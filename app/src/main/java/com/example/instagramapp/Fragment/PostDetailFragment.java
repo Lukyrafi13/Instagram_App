@@ -42,6 +42,7 @@ public class PostDetailFragment extends Fragment {
         postid = preferences.getString("postid","none");
 
         recyclerView = view.findViewById(R.id.recycler_view);
+
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -62,7 +63,7 @@ public class PostDetailFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 postList.clear();
-                Post post =snapshot.getValue(Post.class);
+                Post post = snapshot.getValue(Post.class);
                 postList.add(post);
 
                 postAdapter.notifyDataSetChanged();

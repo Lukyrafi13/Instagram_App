@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -42,6 +43,7 @@ public class PostActivity extends AppCompatActivity {
     ImageView close, image_added;
     TextView post;
     EditText description;
+    Button tambah_gambar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class PostActivity extends AppCompatActivity {
         image_added = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+        tambah_gambar = findViewById(R.id.tambah_gambar);
 
         storageReference = FirebaseStorage.getInstance().getReference("posts");
 
@@ -70,9 +73,15 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity()
-                .setAspectRatio(1,1)
-                .start(PostActivity.this);
+        tambah_gambar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CropImage.activity()
+                        .setAspectRatio(1,1)
+                        .start(PostActivity.this);
+            }
+        });
+
     }
 
     private String getFileExtension(Uri uri){
